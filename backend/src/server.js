@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import { connectDB } from './config/db.js';
 import { router } from './routes/notesRoutes.js';
+import { rateLimiter } from './middleware/rateLimiter.js';
 
 const PORT = process.env.PORT;
 
@@ -12,6 +13,9 @@ const app = express();
 // initial middleware
 app.use(cors());
 app.use(express.json());
+
+// ratelimiter middleware
+app.use(rateLimiter);
 
 // req.path & req.method middleware
 app.use((req, res, next) => {
