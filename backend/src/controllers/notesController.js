@@ -68,7 +68,7 @@ async function updateNote(req, res) {
       return res.status(404).json({ message: 'Note not found.' });
     }
 
-    res.status(200).json(note);
+    res.status(200).json(updatedNote);
   } catch (error) {
     console.log('Error in updateNote controller.', error);
     res.status(500).json({ message: 'Internal server error.' });

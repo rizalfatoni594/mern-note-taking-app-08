@@ -10,18 +10,18 @@ const PORT = process.env.PORT;
 const app = express();
 
 // middleware
-// initial middleware
-app.use(cors());
-app.use(express.json());
-
-// ratelimiter middleware
-app.use(rateLimiter);
-
 // req.path & req.method middleware
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+
+// ratelimiter middleware
+app.use(rateLimiter);
+
+// initial middleware
+app.use(cors());
+app.use(express.json());
 
 // mount router middleware
 app.use('/api/notes', router);
